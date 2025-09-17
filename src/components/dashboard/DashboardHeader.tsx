@@ -1,7 +1,6 @@
 import React from 'react';
 import { GraduationCap, School, Calendar, TrendingUp } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-import studentProfileImage from '@/assets/student-profile.jpg';
 
 const DashboardHeader = () => {
   // Mock student data
@@ -33,11 +32,9 @@ const DashboardHeader = () => {
         {/* Student Profile */}
         <div className="flex flex-col lg:flex-row items-center gap-4">
           <div className="relative">
-            <img 
-              src={studentProfileImage} 
-              alt="Student Profile" 
-              className="w-20 h-20 lg:w-24 lg:h-24 rounded-full object-cover border-4 border-primary/20"
-            />
+            <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-primary-foreground font-bold text-xl border-4 border-primary/20">
+              EJ
+            </div>
             <div className="absolute -bottom-2 -right-2 bg-success text-success-foreground rounded-full p-1">
               <TrendingUp className="w-4 h-4" />
             </div>

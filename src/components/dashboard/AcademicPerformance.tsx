@@ -33,7 +33,7 @@ const AcademicPerformance = () => {
     }
   };
 
-  const CustomTooltip = ({ active, payload, label }: any) => {
+  const CustomTooltipComponent = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
         <div className="bg-card border border-border rounded-lg p-3 shadow-lg">
@@ -72,7 +72,7 @@ const AcademicPerformance = () => {
                   tick={{ fill: '#6b7280', fontSize: 12 }}
                   tickLine={{ stroke: '#e5e7eb' }}
                 />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltipComponent />} />
                 <Bar 
                   dataKey="score" 
                   radius={[4, 4, 0, 0]}
@@ -120,7 +120,7 @@ const AcademicPerformance = () => {
                   tick={{ fill: '#6b7280', fontSize: 12 }}
                   tickLine={{ stroke: '#e5e7eb' }}
                 />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltipComponent />} />
                 <Line 
                   type="monotone" 
                   dataKey="overall" 

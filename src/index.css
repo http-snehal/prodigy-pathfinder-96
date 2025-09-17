@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Educational Dashboard Design System - K-12 Student Progress Reports */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Educational Color Palette */
+    --background: 248 250 252;
+    --foreground: 15 23 42;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 15 23 42;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 15 23 42;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Trust Blue - Primary education color */
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-muted: 217 91% 95%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Growth Green - Success and progress */
+    --success: 159 75% 40%;
+    --success-foreground: 0 0% 100%;
+    --success-muted: 159 75% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Creativity Yellow - Highlights and achievements */
+    --warning: 32 95% 55%;
+    --warning-foreground: 0 0% 100%;
+    --warning-muted: 32 95% 95%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neutral grays */
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 15 23 42;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 100 7% 40%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 15 23 42;
 
-    --radius: 0.5rem;
+    /* Destructive - For areas needing improvement */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-muted: 0 84% 95%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+
+    /* Custom Educational Variables */
+    --radius: 0.75rem;
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(217 91% 70%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(var(--success)) 0%, hsl(159 75% 50%) 100%);
+    --gradient-warning: linear-gradient(135deg, hsl(var(--warning)) 0%, hsl(32 95% 65%) 100%);
+    --gradient-bg: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(220 60% 99%) 100%);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -102,4 +129,101 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@layer components {
+  /* Dashboard Card Variants */
+  .card-elevated {
+    @apply bg-card border border-border rounded-lg p-6 shadow-[var(--shadow-elevated)] hover:shadow-lg transition-all duration-300;
+  }
+
+  .card-interactive {
+    @apply bg-card border border-border rounded-lg p-6 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] hover:-translate-y-1 transition-all duration-300 cursor-pointer;
+  }
+
+  /* Performance Meter Styles */
+  .performance-excellent { @apply text-success bg-success/10; }
+  .performance-good { @apply text-primary bg-primary/10; }
+  .performance-average { @apply text-warning bg-warning/10; }
+  .performance-needs-improvement { @apply text-destructive bg-destructive/10; }
+
+  /* Badge Variants */
+  .badge-achievement {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-success to-success/80 text-success-foreground shadow-sm;
+  }
+
+  .badge-skill {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-sm;
+  }
+
+  .badge-creative {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium bg-gradient-to-r from-warning to-warning/80 text-warning-foreground shadow-sm;
+  }
+
+  /* Progress Bars */
+  .progress-bar {
+    @apply w-full bg-secondary rounded-full h-2.5;
+  }
+
+  .progress-fill-excellent { @apply bg-gradient-to-r from-success to-success/80; }
+  .progress-fill-good { @apply bg-gradient-to-r from-primary to-primary/80; }
+  .progress-fill-average { @apply bg-gradient-to-r from-warning to-warning/80; }
+  .progress-fill-poor { @apply bg-gradient-to-r from-destructive to-destructive/80; }
+
+  /* Chart Container */
+  .chart-container {
+    @apply w-full h-64 p-4 bg-gradient-to-br from-card to-muted/20 rounded-lg border border-border/50;
+  }
+
+  /* Floating Elements */
+  .floating-widget {
+    @apply fixed bottom-4 right-4 z-50 bg-primary text-primary-foreground p-4 rounded-full shadow-[var(--shadow-elevated)] hover:scale-105 transition-all duration-300 cursor-pointer;
+  }
+
+  /* Recommendation Cards */
+  .recommendation-card {
+    @apply bg-gradient-to-br from-card to-primary/5 border border-primary/20 rounded-lg p-4 hover:border-primary/40 transition-all duration-300;
+  }
+
+  /* Section Headers */
+  .section-header {
+    @apply text-xl font-bold text-foreground mb-4 flex items-center gap-2;
+  }
+
+  /* Metric Display */
+  .metric-large {
+    @apply text-3xl font-bold text-primary;
+  }
+
+  .metric-medium {
+    @apply text-xl font-semibold text-foreground;
+  }
+
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }

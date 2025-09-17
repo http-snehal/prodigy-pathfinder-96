@@ -7,7 +7,7 @@ import LearningInsights from './dashboard/LearningInsights';
 import PeerBenchmark from './dashboard/PeerBenchmark';
 import CareerGuidance from './dashboard/CareerGuidance';
 import PersonalizedRecommendations from './dashboard/PersonalizedRecommendations';
-import NEPAlignment from './dashboard/NEPAlignment';
+import PersonalInfo from './dashboard/PersonalInfo';
 import AIMentorWidget from './dashboard/AIMentorWidget';
 
 const StudentDashboard = () => {
@@ -51,7 +51,7 @@ const StudentDashboard = () => {
             </div>
             
             <div className="animate-slide-up" style={{ animationDelay: '0.5s' }}>
-              <NEPAlignment />
+              <PersonalInfo />
             </div>
           </div>
         </div>
